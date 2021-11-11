@@ -12,6 +12,9 @@ def perceptron_backpropagation_mnist(pca=False):
     test_images, test_labels, train_images, train_labels = ImportFiles.import_mnist(pca)
 
     sgdc = SGDClassifier(loss=loss, alpha=alpha, learning_rate='constant', eta0=learning_rate)
+    hinge = sgdc.loss_functions[loss]
+    hinge = (hinge[0], 3)
+    sgdc.loss_function_ = hinge
     sgdc.fit(train_images, train_labels)
 
     pred = sgdc.predict(test_images)
@@ -27,6 +30,9 @@ def perceptron_backpropagation_orl(pca=False):
     train_data, test_data, train_labels, test_labels = ImportFiles.import_orl(pca)
 
     sgdc = SGDClassifier(loss=loss, alpha=alpha, learning_rate='constant', eta0=learning_rate)
+    hinge = sgdc.loss_functions[loss]
+    hinge = (hinge[0], 3)
+    sgdc.loss_function_ = hinge
     sgdc.fit(train_data, train_labels)
 
     pred = sgdc.predict(test_data)
