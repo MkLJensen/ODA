@@ -22,7 +22,7 @@ def import_orl(pca=False):
     orl_data = np.transpose(scipy.io.loadmat('../DataFiles/orl_data.mat')['data'])
 
     train_data, test_data, train_labels, test_labels = train_test_split(orl_data, orl_labels,
-                                                                        test_size=0.1, random_state=41)
+                                                                        test_size=0.2, random_state=41)
     if pca:
         train_data, test_data = MyPCA.do_PCA(2, train_data, test_data)
 

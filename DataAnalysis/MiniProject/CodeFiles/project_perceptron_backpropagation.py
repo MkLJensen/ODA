@@ -1,15 +1,15 @@
-from sklearn.metrics import classification_report
+from sklearn.metrics import classification_report, accuracy_score
 from MiniProject.CodeFiles.HelpFiles import ImportFiles
 from sklearn.linear_model import SGDClassifier
+import HelpFiles.HelpPlots
 
 alpha = 0
 loss = 'hinge'
+estimator_name = "Perceptron Backpropagation"
 
-def perceptron_backpropagation_mnist(pca=False):
+def perceptron_backpropagation_mnist(learning_rate, pca=False):
 
     test_images, test_labels, train_images, train_labels = ImportFiles.import_mnist(pca)
-
-    learning_rate = 0.003
 
     sgdc = SGDClassifier(loss=loss, alpha=alpha, learning_rate='constant', eta0=learning_rate)
     hinge = sgdc.loss_functions[loss]
@@ -17,19 +17,26 @@ def perceptron_backpropagation_mnist(pca=False):
     sgdc.loss_function_ = hinge
     sgdc.fit(train_images, train_labels)
 
-    pred = sgdc.predict(test_images)
     lbls_names = []
     for i in range(10):
         lbls_names.append(str(i))
 
-    print(classification_report(test_labels, pred, target_names=lbls_names))
+    if pca:
+        Hp = HelpFiles.HelpPlots.HelpPlots()
+        Hp.plotScatterAndDecisionBoundaryOfClassifier(sgdc, test_images, test_labels, "MNIST", 10)
+
+    HelpFiles.HelpPlots.plotConfusionMatrixFromEstimator(test_images, test_labels,
+                                                         [int(i) for i in lbls_names], sgdc, "MNIST", estimator_name)
+
+    pred = sgdc.predict(test_images)
+
+    #print(classification_report(test_labels, pred, target_names=lbls_names))
+    return accuracy_score(test_labels, pred)
 
 
-def perceptron_backpropagation_orl(pca=False):
+def perceptron_backpropagation_orl(learning_rate, pca=False):
 
     train_data, test_data, train_labels, test_labels = ImportFiles.import_orl(pca)
-
-    learning_rate = 0.003
 
     sgdc = SGDClassifier(loss=loss, alpha=alpha, learning_rate='constant', eta0=learning_rate)
     hinge = sgdc.loss_functions[loss]
@@ -37,11 +44,24 @@ def perceptron_backpropagation_orl(pca=False):
     sgdc.loss_function_ = hinge
     sgdc.fit(train_data, train_labels)
 
+    lbls_names = []
+    for i in range(40):
+        lbls_names.append(str(i))
+
+    if pca:
+        Hp = HelpFiles.HelpPlots.HelpPlots()
+        Hp.plotScatterAndDecisionBoundaryOfClassifier(sgdc, test_data, test_labels, "ORL", 40)
+
+    HelpFiles.HelpPlots.plotConfusionMatrixFromEstimator(test_data, test_labels,
+                                                         [int(i) for i in lbls_names], sgdc, "ORL", estimator_name)
+
     pred = sgdc.predict(test_data)
 
-    print(classification_report(test_labels, pred, zero_division=0))
+    #print(classification_report(test_labels, pred, zero_division=0))
+    return accuracy_score(test_labels, pred)
 
 
 if __name__ == '__main__':
-    perceptron_backpropagation_orl(pca=False)
+    perceptron_backpropagation_orl(0.003, pca=True)
+    perceptron_backpropagation_mnist(0.003, pca=True)
 
