@@ -2,7 +2,7 @@ from sklearn.decomposition import PCA
 
 
 def do_PCA(n_components, train_data, test_data):
-    pca = PCA(n_components=2)
+    pca = PCA(n_components=n_components)
     pca.fit(train_data)
     train_data = pca.transform(train_data)
     test_data = pca.transform(test_data)

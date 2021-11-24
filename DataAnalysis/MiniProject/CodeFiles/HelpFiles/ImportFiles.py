@@ -2,6 +2,7 @@ from sklearn.model_selection import train_test_split
 from MiniProject.CodeFiles.HelpFiles import MyPCA
 import scipy.io
 import numpy as np
+import MiniProject.CodeFiles.HelpFiles.HelpPlots as Hp
 
 
 def import_mnist(pca=False):
@@ -10,6 +11,8 @@ def import_mnist(pca=False):
     test_labels = mat['test_labels'].ravel()
     train_images = np.transpose(mat['train_images'])
     train_labels = mat['train_labels'].ravel()
+
+    # Hp.showMnistPlot(train_images, train_labels)
 
     if pca:
         train_images, test_images = MyPCA.do_PCA(2, train_images, test_images)
@@ -23,6 +26,9 @@ def import_orl(pca=False):
 
     train_data, test_data, train_labels, test_labels = train_test_split(orl_data, orl_labels,
                                                                         test_size=0.2, random_state=41)
+
+    # Hp.showOrlPlot(train_data, train_labels)
+
     if pca:
         train_data, test_data = MyPCA.do_PCA(2, train_data, test_data)
 

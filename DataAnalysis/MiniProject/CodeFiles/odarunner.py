@@ -1,8 +1,8 @@
-import project_perceptron_backpropagation as pcb
-import project_perceptron_mse as pcm
-import project_nearest_neighbor as nnc
-import project_nearest_class_centroid as ncc
-import project_nearest_subclass_centroid as nsc
+import MiniProject.CodeFiles.project_perceptron_backpropagation as pcb
+import MiniProject.CodeFiles.project_perceptron_mse as pcm
+import MiniProject.CodeFiles.project_nearest_neighbor as nnc
+import MiniProject.CodeFiles.project_nearest_class_centroid as ncc
+import MiniProject.CodeFiles.project_nearest_subclass_centroid as nsc
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -62,7 +62,7 @@ def run_perceptron_backpropagation():
                     "Accuracy by LR and Dataset with PCA (Perceptron Backpropagation)", ('0.003', '0.03', '0.3'))
 
     plot_double_bar(filtered_orl_no_pca, filtered_mnist_no_pca, 3, 'Learning Rate', 'Accuracy',
-                    "Accuracy by LR and Dataset with PCA (Perceptron Backpropagation)", ('0.003', '0.03', '0.3'))
+                    "Accuracy by LR and Dataset (Perceptron Backpropagation)", ('0.003', '0.03', '0.3'))
 
 
 def run_perceptron_mse():
@@ -151,7 +151,7 @@ def run_subclass_centroid():
                     "Accuracy by Subclasses and Dataset with PCA (Subclass Centroid)", ('2', '3', '5'))
 
     plot_double_bar(filtered_orl_no_pca, filtered_mnist_no_pca, 3, 'Learning Rate', 'Accuracy',
-                    "Accuracy by LR and Dataset with PCA (Subclass Centroid)", ('2', '3', '5'))
+                    "Accuracy by Subclasses and Dataset with no PCA (Subclass Centroid)", ('2', '3', '5'))
 
 
 def run_class_centroid():
@@ -219,13 +219,13 @@ def run_nearest_neighbor():
                     "Accuracy by Nr. Neigbors and Dataset with PCA (Nearest Neighbor)", ('2', '3', '5'))
 
     plot_double_bar(filtered_orl_no_pca, filtered_mnist_no_pca, 3, 'Nr. Neighbors', 'Accuracy',
-                    "Accuracy by Nr. Neighbors and Dataset with PCA (Nearest Neighbor)", ('2', '3', '5'))
+                    "Accuracy by Nr. Neighbors and Dataset with No PCA (Nearest Neighbor)", ('2', '3', '5'))
 
 
 if __name__ == '__main__':
-    run_nearest_neighbor()
+    #run_nearest_neighbor()
     #run_class_centroid()
     #run_subclass_centroid()
     #run_perceptron_backpropagation()
-    #run_perceptron_mse()
+    run_perceptron_mse()
 

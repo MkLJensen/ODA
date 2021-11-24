@@ -3,18 +3,33 @@ import numpy as np
 from sklearn.metrics import ConfusionMatrixDisplay
 from matplotlib.colors import ListedColormap, rgb_to_hsv, hsv_to_rgb
 import seaborn as sns
+import scipy.ndimage as ndi
+
+
+def showOrlPlot(images, labels):
+    plt.imshow(ndi.rotate(images[0].reshape(30, 40), 270), cmap='gray')
+    plt.title("ORL Image With Label" + str(labels[0]))
+    plt.show()
+
+
+def showMnistPlot(images, labels):
+    plt.imshow(np.flip(ndi.rotate(images[2].reshape(28, -28), 270), axis=1), cmap='gray')
+    plt.title("MNIST Image With Label" + str(labels[2]))
+    plt.show()
 
 
 def plotConfusionMatrixFromEstimator(x_test, y_test, labels, estimator, name, estimator_name, PCA, hyper=""):
     ConfusionMatrixDisplay.from_estimator(estimator, x_test, y_test, labels=labels)
-    plt.title("Confusion Matrix for: " + str(name) + " With " + str(estimator_name) + PCA + "and hyperparam: "+hyper)
+    plt.title("Confusion Matrix for: " + str(name) + " With " + str(estimator_name) + " " + PCA + " " + hyper,
+              fontsize=10)
     plt.plot()
     plt.show()
 
 
 def plotConfusionMatrixFromPreds(y_pred, y_true, labels, name, estimator_name, PCA, hyper=""):
     ConfusionMatrixDisplay.from_predictions(y_true, y_pred, labels=labels)
-    plt.title("Confusion Matrix for: " + str(name) + " With " + str(estimator_name) + PCA + "and hyperparam: "+hyper)
+    plt.title("Confusion Matrix for: " + str(name) + " With " + str(estimator_name) + " " + PCA + " " + hyper,
+              fontsize=10)
     plt.plot()
     plt.show()
 
@@ -55,7 +70,7 @@ class HelpPlots:
     """
     https://scikit-learn.org/stable/auto_examples/neighbors/plot_classification.html
     """
-    def plotScatterAndDecisionBoundaryOfClassifier(self, model, x_test, labels, name, number_of_class):
+    def plotScatterAndDecisionBoundaryOfClassifier(self, model, x_test, labels, name, number_of_class, mname, hyper=""):
         plt.rcParams.update({'font.size': 28})
         h = 0.02 # Step Size
         x_min, x_max = x_test[:, 0].min() - 1, x_test[:, 0].max() + 1
@@ -82,8 +97,9 @@ class HelpPlots:
         plt.xlim(xx.min(), xx.max())
         plt.ylim(yy.min(), yy.max())
         plt.title(
-            "%s-Class classification For %s using %s" % (number_of_class, name, str(type(model)))
+            "%s-Class classification For %s using %s : %s" % (number_of_class, name, mname, hyper)
         )
         plt.xlabel("PCA DataLabel 1")
         plt.ylabel("PCA DataLabel 2")
+
         plt.rcParams.update(plt.rcParamsDefault)

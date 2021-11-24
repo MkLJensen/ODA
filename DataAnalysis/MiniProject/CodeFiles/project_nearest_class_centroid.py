@@ -1,7 +1,7 @@
 from sklearn.metrics import classification_report, accuracy_score
 from sklearn.neighbors import NearestCentroid
 from MiniProject.CodeFiles.HelpFiles import ImportFiles
-import HelpFiles.HelpPlots
+import MiniProject.CodeFiles.HelpFiles.HelpPlots as HelpP
 
 estimator_name = "Nearest Class Centroid"
 
@@ -18,17 +18,14 @@ def nearest_centroid_mnist(pca=False):
     for i in range(10):
         lbls_names.append(str(i))
 
-    PCAstring = "No PCA"
+    PCA_string = "PCA" if pca else "No PCA"
 
     if pca:
-        Hp = HelpFiles.HelpPlots.HelpPlots()
-        Hp.plotScatterAndDecisionBoundaryOfClassifier(ncc, test_images, pred, "MNIST", 10)
-        PCAstring = "PCA"
+        Hp = HelpP.HelpPlots()
+        Hp.plotScatterAndDecisionBoundaryOfClassifier(ncc, test_images, pred, "MNIST", "NearestCentroid", 10)
 
-
-    HelpFiles.HelpPlots.plotConfusionMatrixFromEstimator(test_images, test_labels, [int(i) for i in lbls_names],
-                                                         ncc, "MNIST", estimator_name, PCAstring)
-
+    HelpP.plotConfusionMatrixFromEstimator(test_images, test_labels, [int(i) for i in lbls_names],
+                                                         ncc, "MNIST", estimator_name, PCA_string)
 
     #print(classification_report(test_labels, pred, target_names=lbls_names))
     return accuracy_score(test_labels, pred)
@@ -47,12 +44,14 @@ def nearest_centroid_orl(pca=False):
     for i in range(40):
         lbls_names.append(str(i))
 
-    if pca:
-        Hp = HelpFiles.HelpPlots.HelpPlots()
-        Hp.plotScatterAndDecisionBoundaryOfClassifier(ncc, test_data, pred, "ORL", 40)
+    PCA_string = "PCA" if pca else "No PCA"
 
-    HelpFiles.HelpPlots.plotConfusionMatrixFromEstimator(test_data, test_labels, [int(i) for i in lbls_names],
-                                                         ncc, "ORL", estimator_name)
+    if pca:
+        Hp = HelpP.HelpPlots()
+        Hp.plotScatterAndDecisionBoundaryOfClassifier(ncc, test_data, pred, "ORL", "NearestCentroid", 40)
+
+    HelpP.plotConfusionMatrixFromEstimator(test_data, test_labels, [int(i) for i in lbls_names],
+                                                         ncc, "ORL", estimator_name, PCA_string)
 
     #print(classification_report(test_labels, pred, zero_division=0))
     return accuracy_score(test_labels, pred)
