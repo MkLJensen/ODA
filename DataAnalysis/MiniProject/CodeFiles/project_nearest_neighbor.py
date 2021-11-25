@@ -21,7 +21,7 @@ def nearest_neighbor_mnist(n_neighbors, pca=False):
 
     if pca:
         Hp = HelpP.HelpPlots()
-        Hp.plotScatterAndDecisionBoundaryOfClassifier(knn, test_images, test_labels, "MNIST", 10, "KNearestNeighbor",
+        Hp.plotScatterAndDecisionBoundaryOfClassifier(knn, test_images, pred, "MNIST", 10, "KNearestNeighbor",
                                                       "N Neighbor: " + str(n_neighbors))
 
     HelpP.plotConfusionMatrixFromEstimator(test_images, test_labels, [int(i) for i in lbls_names],
@@ -48,12 +48,12 @@ def nearest_neighbor_orl(n_neighbors, pca=False):
 
     if pca:
         Hp = HelpP.HelpPlots()
-        Hp.plotScatterAndDecisionBoundaryOfClassifier(knn, test_data, test_labels, "ORL", 40, "KNearestNeighbor",
+        Hp.plotScatterAndDecisionBoundaryOfClassifier(knn, test_data, pred, "ORL", 40, "KNearestNeighbor",
                                                       hyper="N Neighbor: " + str(n_neighbors))
 
-    HelpP.plotConfusionMatrixFromEstimator(test_data, test_labels, [int(i) for i in lbls_names],
+    """HelpP.plotConfusionMatrixFromEstimator(test_data, test_labels, [int(i) for i in lbls_names],
                                            knn, "ORL", estimator_name, PCA_string,
-                                           hyper="N Neighbor: " + str(n_neighbors))
+                                           hyper="N Neighbor: " + str(n_neighbors))"""
 
     # print(classification_report(test_labels, pred, zero_division=0))
     return accuracy_score(test_labels, pred)

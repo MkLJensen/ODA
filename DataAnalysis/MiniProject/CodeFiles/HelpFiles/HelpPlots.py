@@ -103,3 +103,5 @@ class HelpPlots:
         plt.ylabel("PCA DataLabel 2")
 
         plt.rcParams.update(plt.rcParamsDefault)
+        plt.plot()
+        plt.show()

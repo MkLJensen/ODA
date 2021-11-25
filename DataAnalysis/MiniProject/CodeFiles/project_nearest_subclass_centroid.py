@@ -21,7 +21,7 @@ def nearest_subclass_centroid_mnist(number_subclasses, pca=False):
 
     if pca:
         Hp = HelpP.HelpPlots()
-        Hp.plotScatterAndDecisionBoundaryOfClassifier(nsc, test_images, test_labels, "MNIST", 10, "Subclass Centroid",
+        Hp.plotScatterAndDecisionBoundaryOfClassifier(nsc, test_images, pred, "MNIST", 10, "Subclass Centroid",
                                                       hyper=number_subclasses)
 
     HelpP.plotConfusionMatrixFromPreds(pred, test_labels, [int(i) for i in lbls_names], "MNIST",
@@ -49,12 +49,12 @@ def nearest_subclass_centroid_orl(number_subclasses, pca=False):
 
     if pca:
         Hp = HelpP.HelpPlots()
-        Hp.plotScatterAndDecisionBoundaryOfClassifier(nsc, test_data, test_labels, "ORL", 40, "SubclassCentroid",
+        Hp.plotScatterAndDecisionBoundaryOfClassifier(nsc, test_data, pred, "ORL", 40, "SubclassCentroid",
                                                       hyper=number_subclasses)
 
-    HelpP.plotConfusionMatrixFromPreds(pred, test_labels, lbls_names, "ORL",
+    """HelpP.plotConfusionMatrixFromPreds(pred, test_labels, lbls_names, "ORL",
                                        "Nearest Subclass Centroid", PCA_string,
-                                       hyper="Nr Subclasses: " + str(number_subclasses))
+                                       hyper="Nr Subclasses: " + str(number_subclasses))"""
 
     # print(classification_report(test_labels, pred, zero_division=0))
     return accuracy_score(test_labels, pred)

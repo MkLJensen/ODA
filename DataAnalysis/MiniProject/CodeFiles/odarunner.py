@@ -223,9 +223,11 @@ def run_nearest_neighbor():
 
 
 if __name__ == '__main__':
-    #run_nearest_neighbor()
-    #run_class_centroid()
-    #run_subclass_centroid()
-    #run_perceptron_backpropagation()
-    run_perceptron_mse()
+    run_nearest_neighbor()
+    # run_subclass_centroid()
+    # run_perceptron_backpropagation()
+    # run_perceptron_mse()
+
+    # run_class_centroid()
+
 

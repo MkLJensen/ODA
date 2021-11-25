@@ -21,16 +21,16 @@ def perceptron_backpropagation_mnist(learning_rate, pca=False):
 
     PCA_string = "PCA" if pca else "No PCA"
 
+    pred = sgdc.predict(test_images)
+
     if pca:
         Hp = HelpP.HelpPlots()
-        Hp.plotScatterAndDecisionBoundaryOfClassifier(sgdc, test_images, test_labels, "MNIST", 10, "Perceptron_Backp",
+        Hp.plotScatterAndDecisionBoundaryOfClassifier(sgdc, test_images, pred, "MNIST", 10, "Perceptron_Backp",
                                                       hyper=str(learning_rate))
 
-    HelpP.plotConfusionMatrixFromEstimator(test_images, test_labels,
+    """HelpP.plotConfusionMatrixFromEstimator(test_images, test_labels,
                                            [int(i) for i in lbls_names], sgdc, "MNIST",
-                                           estimator_name, PCA_string, hyper="LR: " + str(learning_rate))
-
-    pred = sgdc.predict(test_images)
+                                           estimator_name, PCA_string, hyper="LR: " + str(learning_rate))"""
 
     # print(classification_report(test_labels, pred, target_names=lbls_names))
     return accuracy_score(test_labels, pred)
@@ -49,16 +49,16 @@ def perceptron_backpropagation_orl(learning_rate, pca=False):
 
     PCA_string = "PCA" if pca else "No PCA"
 
+    pred = sgdc.predict(test_data)
+
     if pca:
         Hp = HelpP.HelpPlots()
-        Hp.plotScatterAndDecisionBoundaryOfClassifier(sgdc, test_data, test_labels, "ORL", 40, "Perceptron_Backp",
+        Hp.plotScatterAndDecisionBoundaryOfClassifier(sgdc, test_data, pred, "ORL", 40, "Perceptron_Backp",
                                                       hyper=str(learning_rate))
 
     HelpP.plotConfusionMatrixFromEstimator(test_data, test_labels,
                                            [int(i) for i in lbls_names], sgdc, "ORL",
                                            estimator_name, PCA_string, hyper="LR: " + str(learning_rate))
-
-    pred = sgdc.predict(test_data)
 
     # print(classification_report(test_labels, pred, zero_division=0))
     return accuracy_score(test_labels, pred)
