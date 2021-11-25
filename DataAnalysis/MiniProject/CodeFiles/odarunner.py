@@ -53,6 +53,11 @@ def run_perceptron_backpropagation():
     perceptron_backpropagation_no_pca["mnist_" + str(learning_rate)] = \
         pcb.perceptron_backpropagation_mnist(learning_rate, pca=False)
 
+    print("Perceptron Backpropagation PCA")
+    print(perceptron_backpropagation_pca)
+    print("Perceptron Backpropagation No PCA")
+    print(perceptron_backpropagation_no_pca)
+
     filtered_orl_pca = dict(filter(lambda item: "orl" in item[0], perceptron_backpropagation_pca.items()))
     filtered_orl_no_pca = dict(filter(lambda item: "orl" in item[0], perceptron_backpropagation_no_pca.items()))
     filtered_mnist_pca = dict(filter(lambda item: "mnist" in item[0], perceptron_backpropagation_pca.items()))
@@ -99,6 +104,11 @@ def run_perceptron_mse():
     perceptron_mse_no_pca["mnist_" + str(learning_rate)] = \
         pcm.perceptron_mse_mnist(learning_rate, pca=False)
 
+    print("Perceptron MSE PCA")
+    print(perceptron_mse_pca)
+    print("Perceptron MSE No PCA")
+    print(perceptron_mse_no_pca)
+
     filtered_orl_pca = dict(filter(lambda item: "orl" in item[0], perceptron_mse_pca.items()))
     filtered_orl_no_pca = dict(filter(lambda item: "orl" in item[0], perceptron_mse_no_pca.items()))
     filtered_mnist_pca = dict(filter(lambda item: "mnist" in item[0], perceptron_mse_pca.items()))
@@ -142,6 +152,11 @@ def run_subclass_centroid():
     subclass_centroid_no_pca["mnist_" + str(5)] = \
         nsc.nearest_subclass_centroid_mnist(5, pca=False)
 
+    print("Subclass Centroid PCA")
+    print(subclass_centroid_pca)
+    print("Subclass Centroid No PCA")
+    print(subclass_centroid_no_pca)
+
     filtered_orl_pca = dict(filter(lambda item: "orl" in item[0], subclass_centroid_pca.items()))
     filtered_orl_no_pca = dict(filter(lambda item: "orl" in item[0], subclass_centroid_no_pca.items()))
     filtered_mnist_pca = dict(filter(lambda item: "mnist" in item[0], subclass_centroid_pca.items()))
@@ -150,7 +165,7 @@ def run_subclass_centroid():
     plot_double_bar(filtered_orl_pca, filtered_mnist_pca, 3, 'Subclasses', 'Accuracy',
                     "Accuracy by Subclasses and Dataset with PCA (Subclass Centroid)", ('2', '3', '5'))
 
-    plot_double_bar(filtered_orl_no_pca, filtered_mnist_no_pca, 3, 'Learning Rate', 'Accuracy',
+    plot_double_bar(filtered_orl_no_pca, filtered_mnist_no_pca, 3, 'Subclasses', 'Accuracy',
                     "Accuracy by Subclasses and Dataset with no PCA (Subclass Centroid)", ('2', '3', '5'))
 
 
@@ -166,6 +181,11 @@ def run_class_centroid():
         ncc.nearest_centroid_orl(pca=False)
     class_centroid_no_pca["mnist"] = \
         ncc.nearest_centroid_mnist(pca=False)
+
+    print("Nearest Class Centroid PCA")
+    print(class_centroid_pca)
+    print("Nearest Class Centroid No PCA")
+    print(class_centroid_no_pca)
 
     ind = np.arange(2)
 
@@ -210,6 +230,11 @@ def run_nearest_neighbor():
     nearest_neighbor_no_pca["mnist_" + str(5)] = \
         nnc.nearest_neighbor_mnist(5, pca=False)
 
+    print("Nearest Neighbor PCA")
+    print(nearest_neighbor_pca)
+    print("Nearest Neigbor No PCA")
+    print(nearest_neighbor_no_pca)
+
     filtered_orl_pca = dict(filter(lambda item: "orl" in item[0], nearest_neighbor_pca.items()))
     filtered_orl_no_pca = dict(filter(lambda item: "orl" in item[0], nearest_neighbor_no_pca.items()))
     filtered_mnist_pca = dict(filter(lambda item: "mnist" in item[0], nearest_neighbor_pca.items()))
@@ -223,11 +248,10 @@ def run_nearest_neighbor():
 
 
 if __name__ == '__main__':
-    run_nearest_neighbor()
+    # run_nearest_neighbor()
     # run_subclass_centroid()
-    # run_perceptron_backpropagation()
-    # run_perceptron_mse()
-
+    run_perceptron_backpropagation()
+    #run_perceptron_mse()
     # run_class_centroid()
 
 
