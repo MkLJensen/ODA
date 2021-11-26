@@ -11,7 +11,7 @@ estimator_name = "Perceptron using MSE"
 def perceptron_mse_mnist(learning_rate, pca=False):
     test_images, test_labels, train_images, train_labels = ImportFiles.import_mnist(pca)
 
-    sgdc = SGDClassifier(loss=loss, alpha=alpha, learning_rate='constant', eta0=learning_rate, random_state=41)
+    sgdc = SGDClassifier(loss=loss, alpha=alpha, learning_rate='constant', eta0=learning_rate)
 
     sgdc.fit(train_images, train_labels)
 
@@ -39,7 +39,7 @@ def perceptron_mse_mnist(learning_rate, pca=False):
 def perceptron_mse_orl(learning_rate, pca=False):
     train_data, test_data, train_labels, test_labels = ImportFiles.import_orl(pca)
 
-    sgdc = SGDClassifier(loss=loss, alpha=alpha, learning_rate='constant', eta0=learning_rate, random_state=41)
+    sgdc = SGDClassifier(loss=loss, alpha=alpha, learning_rate='constant', eta0=learning_rate)
 
     sgdc.fit(train_data, train_labels)
 
