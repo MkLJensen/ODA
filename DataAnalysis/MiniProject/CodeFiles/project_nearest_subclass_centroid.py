@@ -52,9 +52,9 @@ def nearest_subclass_centroid_orl(number_subclasses, pca=False):
         Hp.plotScatterAndDecisionBoundaryOfClassifier(nsc, test_data, pred, "ORL", 40, "SubclassCentroid",
                                                       hyper=number_subclasses)
 
-    """HelpP.plotConfusionMatrixFromPreds(pred, test_labels, lbls_names, "ORL",
+    HelpP.plotConfusionMatrixFromPreds(pred, test_labels, lbls_names, "ORL",
                                        "Nearest Subclass Centroid", PCA_string,
-                                       hyper="Nr Subclasses: " + str(number_subclasses))"""
+                                       hyper="Nr Subclasses: " + str(number_subclasses))
 
     # print(classification_report(test_labels, pred, zero_division=0))
     return accuracy_score(test_labels, pred)

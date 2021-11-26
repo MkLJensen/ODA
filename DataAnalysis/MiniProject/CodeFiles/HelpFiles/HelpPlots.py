@@ -35,7 +35,7 @@ def plotConfusionMatrixFromPreds(y_pred, y_true, labels, name, estimator_name, P
 
 
 class HelpPlots:
-
+    """ Colors and DefColors are unused """
     def __init__(self):
         self.mnist_colors = []
         self.mnist_colors_light = []

@@ -28,9 +28,9 @@ def perceptron_backpropagation_mnist(learning_rate, pca=False):
         Hp.plotScatterAndDecisionBoundaryOfClassifier(sgdc, test_images, pred, "MNIST", 10, "Perceptron_Backp",
                                                       hyper=str(learning_rate))
 
-    """HelpP.plotConfusionMatrixFromEstimator(test_images, test_labels,
+    HelpP.plotConfusionMatrixFromEstimator(test_images, test_labels,
                                            [int(i) for i in lbls_names], sgdc, "MNIST",
-                                           estimator_name, PCA_string, hyper="LR: " + str(learning_rate))"""
+                                           estimator_name, PCA_string, hyper="LR: " + str(learning_rate))
 
     # print(classification_report(test_labels, pred, target_names=lbls_names))
     return accuracy_score(test_labels, pred)
